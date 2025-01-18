@@ -31,16 +31,22 @@ generate "provider" {
 dependency "config" {
     config_path = "../config"
 
-    mock_outputs ={
-        region = "ap-northeast-2"
-        account_id = "1234567890"
-        vpc = {
-            vpc_id = "vpc-111"
-            was_subnet_ids = ["subnet-111","subnet-222"]
-        }
+    mock_outputs = {
+        config_output = "mock-config-output"
+    }
+}
+
+dependency "alb" {
+    config_path = "../alb"
+
+    mock_outputs = {
+        alb_output = "mock-alb-output"
     }
 }
 
 inputs = {
     env = "prd"
+
+    config = dependency.config.outputs
+    alb = dependency.alb.outputs
 }
