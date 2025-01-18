@@ -1,3 +1,3 @@
 output "alb" {
-    value = module.lb.outputs
+    value = module.alb
 }
